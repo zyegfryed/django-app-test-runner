@@ -13,7 +13,7 @@ def main():
     The entry point for the script. This script is fairly basic. Here is a
     quick example of how to use it::
     
-        app_test_runner.py [path-to-app]
+        app_test_runner.py [path-to-app] [app-test-case]
     
     You must have Django on the PYTHONPATH prior to running this script. This
     script basically will bootstrap a Django environment for you.
@@ -43,7 +43,7 @@ def main():
             app_path = app_path[:-1]
         parent_dir, app_name = os.path.split(app_path)
         sys.path.insert(0, parent_dir)
-    
+
     settings.configure(**{
         "DATABASE_ENGINE": options.DATABASE_ENGINE,
         "DATABASE_NAME": options.DATABASE_NAME,
@@ -71,7 +71,7 @@ def main():
             app_name,
         ),
     })
-    call_command("test")
+    call_command("test", *args[1:])
 
 if __name__ == "__main__":
     main()
